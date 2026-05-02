@@ -1,0 +1,29 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "M2BVGCNL92.com.elai.switchy"
+        ],
+        "components": [
+          {
+            "/": "/item/*",
+            "comment": "Item detail pages"
+          },
+          {
+            "/": "/profile/*",
+            "comment": "User profiles"
+          },
+          {
+            "/": "/p/*",
+            "comment": "Short profile links (QR)"
+          },
+          {
+            "/": "/share/*",
+            "comment": "Story share links"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -10,6 +10,17 @@
     Content-Type = "application/json"
 
 # SEO Web Shell — Stage 2-I
+# Force UTF-8 HTML on item pages (Netlify's proxy sometimes drops upstream Content-Type)
+[[headers]]
+  for = "/item/*"
+  [headers.values]
+    Content-Type = "text/html; charset=utf-8"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+
 # Proxy /item/<id> to Supabase Edge Function for server-side HTML rendering
 [[redirects]]
   from = "/item/*"

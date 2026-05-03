@@ -1,3 +1,4 @@
+# .well-known files served as application/json (Universal Links / App Links)
 [[headers]]
   for = "/.well-known/apple-app-site-association"
   [headers.values]
@@ -7,3 +8,18 @@
   for = "/.well-known/assetlinks.json"
   [headers.values]
     Content-Type = "application/json"
+
+# SEO Web Shell — Stage 2-I
+# Proxy /item/<id> to Supabase Edge Function for server-side HTML rendering
+[[redirects]]
+  from = "/item/*"
+  to = "https://kvmgiutjertspbexjuzn.supabase.co/functions/v1/seo-item-page/item/:splat"
+  status = 200
+  force = true
+
+# Sitemap for Google indexing
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "https://kvmgiutjertspbexjuzn.supabase.co/functions/v1/seo-sitemap"
+  status = 200
+  force = true

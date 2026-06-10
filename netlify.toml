@@ -9,5 +9,15 @@
   [headers.values]
     Content-Type = "application/json"
 
-# Edge Functions handle /item/* and /sitemap.xml proxying with forced charset=utf-8
-# (see netlify/edge-functions/item-proxy.ts and sitemap-proxy.ts)
+# Edge Functions handle /item/*, /profile/*, /p/* and /sitemap.xml proxying with
+# forced charset=utf-8 (see netlify/edge-functions/item-proxy.ts, profile-proxy.ts,
+# sitemap-proxy.ts)
+
+# /share/<id> story links → canonical item page. When the app is installed the OS
+# intercepts the universal link via AASA before this runs; this 301 is the web
+# fallback for non-app users.
+[[redirects]]
+  from = "/share/:id"
+  to = "/item/:id"
+  status = 301
+  force = true

@@ -4,7 +4,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "com.elai.switchy",
-      "sha256_cert_fingerprints": ["WILL_BE_FILLED_IN_STAGE_2H"]
+      "sha256_cert_fingerprints": ["EB:FD:E9:8C:AF:30:CA:13:69:6C:8B:DA:D9:83:48:EF:17:2A:AC:EB:5B:AC:3D:EB:EA:18:A0:10:40:1F:3C:4B"]
     }
   }
 ]

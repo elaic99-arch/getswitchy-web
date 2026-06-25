@@ -1,29 +1,117 @@
 <!DOCTYPE html>
+<!-- Awin affiliate partner — ownership verification for the Awin affiliate network. -->
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Switchy — Coming Soon</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
-      color: #fff;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-    }
-    h1 { font-size: 64px; margin: 0; letter-spacing: -2px; }
-    p { font-size: 20px; opacity: 0.7; margin-top: 8px; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>Switchy</title>
+
+  <!-- Keep this page out of search results (product is pre-launch). robots.txt is
+       intentionally left allowing crawl so this noindex can be read & honored, and
+       so the app's /item & /profile share pages stay crawlable. -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+
+  <!-- Awin affiliate-network ownership verification (placeholder token; replace with
+       the real value if Awin issues one). -->
+  <meta name="awin-site-verification" content="awin" />
+
+  <link rel="canonical" href="https://getswitchy.com" />
+  <meta name="theme-color" content="#080A0B" />
+
+  <!-- Minimal, non-revealing social cards: brand + "Launching soon" only. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Switchy" />
+  <meta property="og:description" content="Launching soon." />
+  <meta property="og:url" content="https://getswitchy.com" />
+  <meta property="og:image" content="https://getswitchy.com/assets/icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Switchy" />
+  <meta name="twitter:description" content="Launching soon." />
+  <meta name="twitter:image" content="https://getswitchy.com/assets/icon.png" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+
+  <!-- Typography: Inter, loaded efficiently. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+  />
+
+  <link rel="stylesheet" href="/css/styles.css" />
 </head>
+
 <body>
-  <div>
-    <h1>Switchy</h1>
-    <p>Coming soon.</p>
-  </div>
+  <!-- Soft Tiffany glow lives behind everything. -->
+  <div class="glow" aria-hidden="true"></div>
+
+  <main class="hero">
+    <img
+      class="hero__logo reveal"
+      src="/assets/icon.png"
+      width="96"
+      height="96"
+      alt="Switchy logo"
+      decoding="async"
+    />
+
+    <h1 class="wordmark reveal reveal--1">Switch<span class="wordmark__accent">y</span></h1>
+
+    <p class="tagline reveal reveal--2">The new way to consume fashion</p>
+
+    <p class="status reveal reveal--3">Launching soon</p>
+
+    <!-- Email waitlist — Netlify Forms. The hidden form-name + honeypot are required
+         by Netlify; JS (js/main.js) progressively enhances this into an inline
+         success state. With JS disabled the form still POSTs and Netlify handles it. -->
+    <form
+      class="waitlist reveal reveal--4"
+      name="waitlist"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      novalidate
+    >
+      <input type="hidden" name="form-name" value="waitlist" />
+      <p class="waitlist__honey" aria-hidden="true">
+        <label>Don’t fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+      </p>
+
+      <label class="visually-hidden" for="email">Email address</label>
+      <div class="waitlist__row">
+        <input
+          id="email"
+          class="waitlist__input"
+          type="email"
+          name="email"
+          inputmode="email"
+          autocomplete="email"
+          placeholder="you@email.com"
+          required
+          aria-describedby="form-msg"
+        />
+        <button class="waitlist__button" type="submit">Be the first to know</button>
+      </div>
+
+      <p id="form-msg" class="waitlist__msg" role="status" aria-live="polite"></p>
+    </form>
+
+    <!-- Inline success state (shown by JS after a successful submit). -->
+    <div class="success reveal" id="success" hidden>
+      <p class="success__title">You’re on the list.</p>
+      <p class="success__sub">We’ll let you know the moment we launch.</p>
+    </div>
+  </main>
+
+  <footer class="footer reveal reveal--5">
+    <p class="footer__by">by Astra Tech Investments Ltd · <span id="year">2026</span></p>
+    <p class="footer__awin">Awin affiliate partner</p>
+  </footer>
+
+  <script src="/js/main.js" defer></script>
 </body>
 </html>

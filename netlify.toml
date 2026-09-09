@@ -21,3 +21,58 @@
   to = "/item/:id"
   status = 301
   force = true
+
+# index.html is a single-file site whose sections are toggled by JS. These rewrites
+# give every section a real, shareable URL (the router in index.html reads
+# location.pathname on load). They are listed explicitly — never as a catch-all —
+# so /item/*, /profile/*, /p/*, /sitemap.xml, /.well-known/* and the static assets
+# keep behaving exactly as before.
+[[redirects]]
+  from = "/app"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/sell"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/shop"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/faq"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/returns"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/shipping"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/index.html"
+  status = 200

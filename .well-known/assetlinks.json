@@ -3,7 +3,7 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.elai.switchy",
+      "package_name": "com.getswitchy.app",
       "sha256_cert_fingerprints": ["EB:FD:E9:8C:AF:30:CA:13:69:6C:8B:DA:D9:83:48:EF:17:2A:AC:EB:5B:AC:3D:EB:EA:18:A0:10:40:1F:3C:4B"]
     }
   }

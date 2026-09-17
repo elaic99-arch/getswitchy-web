@@ -4,7 +4,10 @@
     "target": {
       "namespace": "android_app",
       "package_name": "com.getswitchy.app",
-      "sha256_cert_fingerprints": ["EB:FD:E9:8C:AF:30:CA:13:69:6C:8B:DA:D9:83:48:EF:17:2A:AC:EB:5B:AC:3D:EB:EA:18:A0:10:40:1F:3C:4B"]
+      "sha256_cert_fingerprints": [
+        "FF:90:C6:6E:DA:F2:CA:E3:BE:B1:88:17:16:C8:52:87:B9:FE:AC:01:82:36:D6:63:3E:62:C2:69:9A:C8:0F:6C",
+        "5F:E6:FD:2E:33:2F:3E:F2:67:E3:AE:B2:74:CF:4F:1A:9F:69:3C:D9:74:18:29:26:81:90:75:9F:AD:BC:3A:3A"
+      ]
     }
   }
 ]

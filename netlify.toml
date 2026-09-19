@@ -33,6 +33,11 @@
   status = 200
 
 [[redirects]]
+  from = "/app/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
   from = "/sell"
   to = "/index.html"
   status = 200

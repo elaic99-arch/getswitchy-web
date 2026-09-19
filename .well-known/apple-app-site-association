@@ -21,6 +21,14 @@
           {
             "/": "/share/*",
             "comment": "Story share links"
+          },
+          {
+            "/": "/app",
+            "comment": "Email CTA: open the app's home"
+          },
+          {
+            "/": "/app/*",
+            "comment": "Email CTA: open a named screen, e.g. /app/wallet"
           }
         ]
       }

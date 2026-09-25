@@ -1,0 +1,147 @@
+/* Hebrew layout. Loaded in every language so animated language changes use it immediately. */
+html[dir="rtl"] {
+  --sans: Helvetica, Arial, sans-serif;
+  --serif: Helvetica, Arial, sans-serif;
+  --latin: Helvetica, Arial, sans-serif;
+}
+
+html[dir="rtl"] body { font-size: 16px; line-height: 1.45; text-align: start; }
+html[dir="rtl"] .display,
+html[dir="rtl"] .display em { letter-spacing: 0; line-height: 1.08; }
+html[dir="rtl"] .display { font-weight: 700; }
+html[dir="rtl"] .display em { font-family: var(--sans); font-style: normal; font-weight: 700; }
+html[dir="rtl"] .eyebrow { font-size: 14px; font-weight: 700; letter-spacing: 0; }
+html[dir="rtl"] .latin { font-family: var(--latin); font-size: 1em; letter-spacing: normal; unicode-bidi: isolate; }
+html[dir="rtl"] :is(.hero-top, .hero-edition, .image-index, .photo-caption, .card-number, .faq-number, .tab-number, .orbit-word, .app-visual-label),
+html[dir="rtl"] :is(.intro-rule, .auth-caption) > span[dir="ltr"],
+html[dir="rtl"] .about-image > span,
+html[dir="rtl"] .footer-bottom > span {
+  font-family: var(--latin);
+  unicode-bidi: isolate;
+}
+html[dir="rtl"] :is(.footer-statement, .large-copy, .text-card h3, .image-label h3) { letter-spacing: 0; }
+
+/* DOM order follows reading order; only navigation arrows change direction. */
+html[dir="rtl"] .desktop-nav { gap: 24px; }
+html[dir="rtl"] .desktop-nav a { font-size: 16px; }
+html[dir="rtl"] :is(.header-cta, .button, .underlined) { font-size: 16px; }
+html[dir="rtl"] .directional-arrow { flex-shrink: 0; transform: scaleX(-1); }
+html[dir="rtl"] .button:hover .directional-arrow { transform: translateX(-4px) scaleX(-1); }
+html[dir="rtl"] .skip-link { left: auto; right: 16px; }
+html[dir="rtl"] .mobile-nav { text-align: right; }
+html[dir="rtl"] .mobile-nav a { letter-spacing: 0; line-height: 1.45; }
+html[dir="rtl"] .language-heading { font-family: var(--sans); font-size: 18px; }
+html[dir="rtl"] .language-name { text-align: center; }
+
+/* Anchor the headline and its supporting copy on the Hebrew reading edge. */
+html[dir="rtl"] .hero-content {
+  left: auto;
+  right: 5.5%;
+  width: min(720px, 70%);
+  max-width: none;
+  text-align: right;
+}
+html[dir="rtl"] .hero h1 { font-size: clamp(54px, 5.7vw, 88px); max-width: none; line-height: 1.08; }
+html[dir="rtl"] .hero-description { font-size: 19px; line-height: 1.45; margin-inline-start: 0; margin-inline-end: auto; }
+html[dir="rtl"] .hero-shade {
+  background: linear-gradient(270deg, rgba(8,22,17,.64), rgba(8,22,17,.06) 80%), linear-gradient(0deg, #061b164d, transparent 45%);
+}
+html[dir="rtl"] .hero-scroll { left: auto; right: 5.5%; font-size: 15px; }
+html[dir="rtl"] .hero-edition { right: auto; left: 3%; }
+html[dir="rtl"] .image-index { left: auto; right: 20px; }
+html[dir="rtl"] .image-arrow { right: auto; left: 20px; }
+html[dir="rtl"] .photo-caption { left: auto; right: 28px; }
+html[dir="rtl"] .about-image > span { left: auto; right: 5.5%; }
+
+/* Copy stays aligned with its heading. Photography, logos and app screens stay intact. */
+html[dir="rtl"] :is(.section-heading, .feed-section, .manifesto, .footer-grid, .look-spread, .accessory-spread, .closet-spread, .split-hero, .app-hero, .experience-section, .buy-section, .text-cards, .contact-section, .about-body-top, .faq-layout, .auth-hero, .auth-intro) > * { min-width: 0; }
+html[dir="rtl"] .page-intro > p:not(.eyebrow) { margin-inline-start: 0; margin-inline-end: auto; }
+html[dir="rtl"] .phone-duo,
+html[dir="rtl"] .app-hero-visual { direction: ltr; }
+html[dir="rtl"] .phone-caption { direction: rtl; font-size: 15px; letter-spacing: 0; }
+html[dir="rtl"] .manifesto h2 { font-size: clamp(50px, 5.3vw, 82px); }
+html[dir="rtl"] .split-copy { padding-inline: 11% 10%; }
+html[dir="rtl"] .split-copy h1 { font-size: clamp(42px, 4.3vw, 66px); }
+html[dir="rtl"] .auth-hero-copy h1 { font-size: clamp(42px, 4.3vw, 68px); }
+html[dir="rtl"] .about-intro h1 { font-size: clamp(48px, 5.4vw, 82px); }
+html[dir="rtl"] .app-hero h1 { font-size: clamp(60px, 6.6vw, 100px); }
+html[dir="rtl"] :is(.text-card p, .auth-intro-copy p, .faq-answer p) { font-size: 18px; line-height: 1.5; }
+html[dir="rtl"] .image-label p { font-size: 17px; line-height: 1.45; }
+html[dir="rtl"] .auth-anchor { font-size: 16px; }
+html[dir="rtl"] .auth-caption > span:last-child { font-size: 14px; }
+
+html[dir="rtl"] .app-tabs button { padding: 0 0 18px 15px; min-width: 0; }
+html[dir="rtl"] .app-tabs button[aria-selected="true"]::after { right: 0; left: 18px; }
+html[dir="rtl"] .app-tabs .tab-number { text-align: right; }
+html[dir="rtl"] .faq-number { flex-shrink: 0; }
+html[dir="rtl"] .faq-plus { flex-shrink: 0; }
+html[dir="rtl"] .faq-answer { padding-inline: 42px 25px; }
+html[dir="rtl"] .field label { font-size: 17px; }
+html[dir="rtl"] .field :is(input, textarea) { text-align: start; }
+html[dir="rtl"] .field input[type="email"] { font-family: var(--latin); font-size: 16px; text-align: left; }
+html[dir="rtl"] #message-preview { unicode-bidi: plaintext; text-align: start; line-height: 1.5; }
+html[dir="rtl"] .footer-links { font-size: 18px; }
+html[dir="rtl"] .footer-links a[href^="mailto:"] { font-size: 16px; }
+html[dir="rtl"] :is(.footer-sub, .form-note) { font-size: 16px; line-height: 1.45; }
+html[dir="rtl"] .footer-bottom > span { text-align: right; }
+
+@media (min-width: 1700px) {
+  html[dir="rtl"] .hero-content,
+  html[dir="rtl"] .hero-scroll { right: max(5.5%, calc((100vw - 1550px) / 2)); }
+}
+
+@media (max-width: 1180px) {
+  html[dir="rtl"] .hero h1 { font-size: clamp(48px, 6.2vw, 72px); }
+  html[dir="rtl"] .split-copy { padding-inline: 10%; }
+  html[dir="rtl"] .faq-answer { padding-inline-start: 35px; }
+}
+
+@media (max-width: 680px) {
+  html[dir="rtl"] .display,
+  html[dir="rtl"] .display em { font-size: clamp(34px, 9.7vw, 49px); line-height: 1.08; }
+  html[dir="rtl"] .display em { font-size: 1em; }
+  html[dir="rtl"] .eyebrow { font-size: 14px; }
+  html[dir="rtl"] .hero-content { left: 6%; right: 6%; width: auto; }
+  html[dir="rtl"] .hero h1 { font-size: clamp(32px, 9.5vw, 54px); line-height: 1.08; }
+  html[dir="rtl"] .hero-description { font-size: 18px; max-width: 100%; }
+  html[dir="rtl"] .hero .eyebrow { font-size: 14px; }
+  html[dir="rtl"] .hero-shade { background: linear-gradient(0deg, rgba(5,24,18,.84), rgba(5,24,18,.16) 70%, rgba(5,24,18,.12)); }
+  html[dir="rtl"] .hero-scroll { right: 6%; }
+  html[dir="rtl"] .hero-edition { left: 6%; }
+  html[dir="rtl"] .image-index { right: 13px; }
+  html[dir="rtl"] .image-arrow { left: 12px; }
+  html[dir="rtl"] .photo-caption { right: 20px; }
+  html[dir="rtl"] .about-image > span { right: 6%; }
+  html[dir="rtl"] .manifesto h2 { font-size: clamp(38px, 10vw, 54px); }
+  html[dir="rtl"] .split-copy { padding: 32px 6%; }
+  html[dir="rtl"] :is(.split-copy, .auth-hero-copy) h1 { font-size: clamp(34px, 9.1vw, 46px); }
+  html[dir="rtl"] .about-intro h1 { font-size: clamp(37px, 9.5vw, 50px); }
+  html[dir="rtl"] .app-hero h1 { font-size: clamp(44px, 13vw, 58px); }
+  html[dir="rtl"] .footer-statement { font-size: 30px; }
+  html[dir="rtl"] :is(.quote-section, .about-statement) h2 { font-size: clamp(28px, 7.5vw, 38px); }
+  html[dir="rtl"] .text-card h3 { font-size: 23px; }
+  html[dir="rtl"] .large-copy { font-size: 24px; line-height: 1.45; }
+  html[dir="rtl"] .image-label h3 { font-size: 21px; }
+  html[dir="rtl"] .image-label p { font-size: 16px; }
+  html[dir="rtl"] .faq-answer { padding-inline: 30px 5px; }
+  html[dir="rtl"] .faq-item summary { font-size: 18px; }
+}
+
+@media (max-width: 420px) {
+  html[dir="rtl"] .footer-grid > div:last-child { grid-column: 1 / -1; }
+}
+
+html[dir="rtl"] .store-copy { text-align: right; }
+html[dir="rtl"] .policy-hero h1 { letter-spacing: 0; line-height: 1.08; }
+html[dir="rtl"] .policy-intro,
+html[dir="rtl"] .policy-article { font-size: 19px; line-height: 1.5; }
+html[dir="rtl"] .policy-updated { font-size: 16px; }
+html[dir="rtl"] .policy-nav a { font-size: 18px; }
+html[dir="rtl"] .policy-section h2 { font-size: 26px; letter-spacing: 0; line-height: 1.4; }
+@media (max-width: 680px) {
+  html[dir="rtl"] .policy-hero h1 { font-size: clamp(32px, 8.7vw, 48px); }
+  html[dir="rtl"] .policy-intro,
+  html[dir="rtl"] .policy-article { font-size: 18px; }
+  html[dir="rtl"] .policy-nav a { font-size: 17px; }
+  html[dir="rtl"] .policy-section h2 { font-size: 24px; }
+}

@@ -19,6 +19,9 @@
     Content-Type = "application/json"
 
 # URLs courtes et anciennes adresses compatibles.
+# Netlify traite /page et /page/ comme une meme route.
+# Ne pas ajouter de redirection entre ces deux formes : cela cree une boucle.
+# Les regles status = 200 servent directement le fichier HTML correspondant.
 # Les fonctions /item/*, /profile/*, /p/*, /sitemap.xml restent intactes.
 
 [[redirects]]
@@ -160,12 +163,6 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/en/application/"
-to = "/en/application"
-status = 301
-force = true
-
-[[redirects]]
 from = "/en/application"
 to = "/application.en.html"
 status = 200
@@ -183,24 +180,12 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/he/application/"
-to = "/he/application"
-status = 301
-force = true
-
-[[redirects]]
 from = "/he/application"
 to = "/application.he.html"
 status = 200
 
 [[redirects]]
 from = "/application.html"
-to = "/application"
-status = 301
-force = true
-
-[[redirects]]
-from = "/application/"
 to = "/application"
 status = 301
 force = true
@@ -223,12 +208,6 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/en/authentification/"
-to = "/en/authentification"
-status = 301
-force = true
-
-[[redirects]]
 from = "/en/authentification"
 to = "/authentification.en.html"
 status = 200
@@ -246,24 +225,12 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/he/authentification/"
-to = "/he/authentification"
-status = 301
-force = true
-
-[[redirects]]
 from = "/he/authentification"
 to = "/authentification.he.html"
 status = 200
 
 [[redirects]]
 from = "/authentification.html"
-to = "/authentification"
-status = 301
-force = true
-
-[[redirects]]
-from = "/authentification/"
 to = "/authentification"
 status = 301
 force = true
@@ -286,12 +253,6 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/en/boutiques/"
-to = "/en/boutiques"
-status = 301
-force = true
-
-[[redirects]]
 from = "/en/boutiques"
 to = "/boutiques.en.html"
 status = 200
@@ -309,24 +270,12 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/he/boutiques/"
-to = "/he/boutiques"
-status = 301
-force = true
-
-[[redirects]]
 from = "/he/boutiques"
 to = "/boutiques.he.html"
 status = 200
 
 [[redirects]]
 from = "/boutiques.html"
-to = "/boutiques"
-status = 301
-force = true
-
-[[redirects]]
-from = "/boutiques/"
 to = "/boutiques"
 status = 301
 force = true
@@ -349,12 +298,6 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/en/faq/"
-to = "/en/faq"
-status = 301
-force = true
-
-[[redirects]]
 from = "/en/faq"
 to = "/faq.en.html"
 status = 200
@@ -372,24 +315,12 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/he/faq/"
-to = "/he/faq"
-status = 301
-force = true
-
-[[redirects]]
 from = "/he/faq"
 to = "/faq.he.html"
 status = 200
 
 [[redirects]]
 from = "/faq.html"
-to = "/faq"
-status = 301
-force = true
-
-[[redirects]]
-from = "/faq/"
 to = "/faq"
 status = 301
 force = true
@@ -412,12 +343,6 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/en/"
-to = "/en"
-status = 301
-force = true
-
-[[redirects]]
 from = "/en"
 to = "/index.en.html"
 status = 200
@@ -430,12 +355,6 @@ force = true
 
 [[redirects]]
 from = "/index.he"
-to = "/he"
-status = 301
-force = true
-
-[[redirects]]
-from = "/he/"
 to = "/he"
 status = 301
 force = true
@@ -458,12 +377,6 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/fr/"
-to = "/fr"
-status = 301
-force = true
-
-[[redirects]]
 from = "/fr"
 to = "/index.html"
 status = 200
@@ -476,12 +389,6 @@ force = true
 
 [[redirects]]
 from = "/privacy.en"
-to = "/en/privacy"
-status = 301
-force = true
-
-[[redirects]]
-from = "/en/privacy/"
 to = "/en/privacy"
 status = 301
 force = true
@@ -504,24 +411,12 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/he/privacy/"
-to = "/he/privacy"
-status = 301
-force = true
-
-[[redirects]]
 from = "/he/privacy"
 to = "/privacy.he.html"
 status = 200
 
 [[redirects]]
 from = "/privacy.html"
-to = "/privacy"
-status = 301
-force = true
-
-[[redirects]]
-from = "/privacy/"
 to = "/privacy"
 status = 301
 force = true
@@ -544,12 +439,6 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/en/returns/"
-to = "/en/returns"
-status = 301
-force = true
-
-[[redirects]]
 from = "/en/returns"
 to = "/returns.en.html"
 status = 200
@@ -567,24 +456,12 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/he/returns/"
-to = "/he/returns"
-status = 301
-force = true
-
-[[redirects]]
 from = "/he/returns"
 to = "/returns.he.html"
 status = 200
 
 [[redirects]]
 from = "/returns.html"
-to = "/returns"
-status = 301
-force = true
-
-[[redirects]]
-from = "/returns/"
 to = "/returns"
 status = 301
 force = true
@@ -607,12 +484,6 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/en/shipping/"
-to = "/en/shipping"
-status = 301
-force = true
-
-[[redirects]]
 from = "/en/shipping"
 to = "/shipping.en.html"
 status = 200
@@ -630,24 +501,12 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/he/shipping/"
-to = "/he/shipping"
-status = 301
-force = true
-
-[[redirects]]
 from = "/he/shipping"
 to = "/shipping.he.html"
 status = 200
 
 [[redirects]]
 from = "/shipping.html"
-to = "/shipping"
-status = 301
-force = true
-
-[[redirects]]
-from = "/shipping/"
 to = "/shipping"
 status = 301
 force = true
@@ -670,12 +529,6 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/en/terms/"
-to = "/en/terms"
-status = 301
-force = true
-
-[[redirects]]
 from = "/en/terms"
 to = "/terms.en.html"
 status = 200
@@ -693,24 +546,12 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/he/terms/"
-to = "/he/terms"
-status = 301
-force = true
-
-[[redirects]]
 from = "/he/terms"
 to = "/terms.he.html"
 status = 200
 
 [[redirects]]
 from = "/terms.html"
-to = "/terms"
-status = 301
-force = true
-
-[[redirects]]
-from = "/terms/"
 to = "/terms"
 status = 301
 force = true
@@ -733,12 +574,6 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/en/univers/"
-to = "/en/univers"
-status = 301
-force = true
-
-[[redirects]]
 from = "/en/univers"
 to = "/univers.en.html"
 status = 200
@@ -756,24 +591,12 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/he/univers/"
-to = "/he/univers"
-status = 301
-force = true
-
-[[redirects]]
 from = "/he/univers"
 to = "/univers.he.html"
 status = 200
 
 [[redirects]]
 from = "/univers.html"
-to = "/univers"
-status = 301
-force = true
-
-[[redirects]]
-from = "/univers/"
 to = "/univers"
 status = 301
 force = true

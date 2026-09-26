@@ -280,3 +280,17 @@ html:has(.support-dialog[open]){overflow:hidden}
 .phone-tab-controls button:focus-visible{outline:2px solid var(--aqua);outline-offset:0;background:#00d3c51c}
 .app-tabs button{transition:color .28s ease}
 @media(prefers-reduced-motion:reduce){.app-tabs button{transition:none}}
+
+/* Official localized artwork, original aspect ratios and 1/4-height clear space. */
+.store-button.store-badge{display:block;position:relative;inline-size:max-content;max-inline-size:none;min-height:0;gap:0;margin:0;border:0;border-radius:0;background:transparent;color:inherit;overflow:visible;opacity:1;flex:none;direction:ltr;box-shadow:none;transform:none;animation:none;filter:none}
+.store-button.store-badge .store-badge-art{position:static;display:block;width:var(--badge-art-width);height:var(--badge-art-height);max-width:none;max-height:none;margin:0;border:0;border-radius:0;object-fit:contain;pointer-events:none;transform:none;animation:none;filter:none}
+.store-button.store-badge:disabled{opacity:1;cursor:default}
+.store-buttons:has(.store-badge){direction:ltr;align-items:center;gap:0}
+[dir="rtl"] .store-buttons:has(.store-badge){justify-content:flex-end}
+.faq-answer p+p{margin-top:12px}
+.faq-answer a{text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.site-footer .store-buttons:has(.store-badge){margin-top:0}
+.site-footer .open-shop-button{margin-bottom:20px;background:var(--aqua);color:var(--ink)}
+.next-section .open-shop-button{margin:0 auto;min-height:54px;border-radius:999px}
+.contact-section .open-shop-button{justify-self:start;margin-top:8px;grid-column:1/-1}
+html[dir="rtl"] .contact-section .open-shop-button{justify-self:start}

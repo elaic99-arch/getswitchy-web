@@ -18,252 +18,767 @@
   [headers.values]
     Content-Type = "application/json"
 
-# Les trois fonctions existantes continuent de traiter /item/*,
-# /profile/*, /p/* et /sitemap.xml. Aucun catch-all ne les masque.
-[[redirects]]
-  from = "/share/:id"
-  to = "/item/:id"
-  status = 301
-  force = true
-
-# Les liens /app des e-mails gardent une réponse HTML sur le même chemin.
-# Les associations iOS/Android restent inchangées.
-[[redirects]]
-  from = "/app"
-  to = "/application.html"
-  status = 200
+# URLs courtes et anciennes adresses compatibles.
+# Les fonctions /item/*, /profile/*, /p/*, /sitemap.xml restent intactes.
 
 [[redirects]]
-  from = "/app/*"
-  to = "/application.html"
-  status = 200
+from = "/"
+to = "/en"
+status = 302
+force = true
 
 [[redirects]]
-  from = "/sell"
-  to = "/boutiques.html"
-  status = 302
+from = "/assets/app-feed.webp"
+to = "/assets/app-feed-ai.webp"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/shop"
-  to = "/boutiques.html"
-  status = 302
+from = "/assets/app-explore.webp"
+to = "/assets/app-explore-ai-v29.svg"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/about"
-  to = "/index.html"
-  status = 302
+from = "/assets/app-inbox.webp"
+to = "/assets/app-inbox-ai.webp"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/contact"
-  to = "/faq.html#contact-support"
-  status = 302
+from = "/assets/app-shop.webp"
+to = "/assets/app-shop-ai-v21.webp"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/application.en"
-  to = "/application.en.html"
-  status = 200
+from = "/share/:id"
+to = "/item/:id"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/application.he"
-  to = "/application.he.html"
-  status = 200
+from = "/app"
+to = "/application.html"
+status = 200
 
 [[redirects]]
-  from = "/application"
-  to = "/application.html"
-  status = 200
+from = "/app/*"
+to = "/application.html"
+status = 200
 
 [[redirects]]
-  from = "/authentification.en"
-  to = "/authentification.en.html"
-  status = 200
+from = "/sell"
+to = "/boutiques"
+status = 302
 
 [[redirects]]
-  from = "/authentification.he"
-  to = "/authentification.he.html"
-  status = 200
+from = "/shop"
+to = "/boutiques"
+status = 302
 
 [[redirects]]
-  from = "/authentification"
-  to = "/authentification.html"
-  status = 200
+from = "/about"
+to = "/fr"
+status = 302
 
 [[redirects]]
-  from = "/boutiques.en"
-  to = "/boutiques.en.html"
-  status = 200
+from = "/contact"
+to = "/faq#contact-support"
+status = 302
 
 [[redirects]]
-  from = "/boutiques.he"
-  to = "/boutiques.he.html"
-  status = 200
+from = "/vendre"
+to = "/boutiques"
+status = 302
 
 [[redirects]]
-  from = "/boutiques"
-  to = "/boutiques.html"
-  status = 200
+from = "/vendre.html"
+to = "/boutiques"
+status = 302
 
 [[redirects]]
-  from = "/faq.en"
-  to = "/faq.en.html"
-  status = 200
+from = "/a-propos"
+to = "/fr"
+status = 302
 
 [[redirects]]
-  from = "/faq.he"
-  to = "/faq.he.html"
-  status = 200
+from = "/a-propos.html"
+to = "/fr"
+status = 302
 
 [[redirects]]
-  from = "/faq"
-  to = "/faq.html"
-  status = 200
+from = "/vendre.en"
+to = "/en/boutiques"
+status = 302
 
 [[redirects]]
-  from = "/index.en"
-  to = "/index.en.html"
-  status = 200
+from = "/vendre.en.html"
+to = "/en/boutiques"
+status = 302
 
 [[redirects]]
-  from = "/index.he"
-  to = "/index.he.html"
-  status = 200
+from = "/a-propos.en"
+to = "/en"
+status = 302
 
 [[redirects]]
-  from = "/index"
-  to = "/index.html"
-  status = 200
+from = "/a-propos.en.html"
+to = "/en"
+status = 302
 
 [[redirects]]
-  from = "/privacy.en"
-  to = "/privacy.en.html"
-  status = 200
+from = "/vendre.he"
+to = "/he/boutiques"
+status = 302
 
 [[redirects]]
-  from = "/privacy.he"
-  to = "/privacy.he.html"
-  status = 200
+from = "/vendre.he.html"
+to = "/he/boutiques"
+status = 302
 
 [[redirects]]
-  from = "/privacy"
-  to = "/privacy.html"
-  status = 200
+from = "/a-propos.he"
+to = "/he"
+status = 302
 
 [[redirects]]
-  from = "/returns.en"
-  to = "/returns.en.html"
-  status = 200
+from = "/a-propos.he.html"
+to = "/he"
+status = 302
 
 [[redirects]]
-  from = "/returns.he"
-  to = "/returns.he.html"
-  status = 200
+from = "/application.en.html"
+to = "/en/application"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/returns"
-  to = "/returns.html"
-  status = 200
+from = "/application.en"
+to = "/en/application"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/shipping.en"
-  to = "/shipping.en.html"
-  status = 200
+from = "/en/application/"
+to = "/en/application"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/shipping.he"
-  to = "/shipping.he.html"
-  status = 200
+from = "/en/application"
+to = "/application.en.html"
+status = 200
 
 [[redirects]]
-  from = "/shipping"
-  to = "/shipping.html"
-  status = 200
+from = "/application.he.html"
+to = "/he/application"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/terms.en"
-  to = "/terms.en.html"
-  status = 200
+from = "/application.he"
+to = "/he/application"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/terms.he"
-  to = "/terms.he.html"
-  status = 200
+from = "/he/application/"
+to = "/he/application"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/terms"
-  to = "/terms.html"
-  status = 200
+from = "/he/application"
+to = "/application.he.html"
+status = 200
 
 [[redirects]]
-  from = "/univers.en"
-  to = "/univers.en.html"
-  status = 200
+from = "/application.html"
+to = "/application"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/univers.he"
-  to = "/univers.he.html"
-  status = 200
+from = "/application/"
+to = "/application"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/univers"
-  to = "/univers.html"
-  status = 200
+from = "/application"
+to = "/application.html"
+status = 200
 
 [[redirects]]
-  from = "/vendre"
-  to = "/boutiques.html"
-  status = 302
+from = "/authentification.en.html"
+to = "/en/authentification"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/vendre.html"
-  to = "/boutiques.html"
-  status = 302
+from = "/authentification.en"
+to = "/en/authentification"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/a-propos"
-  to = "/index.html"
-  status = 302
+from = "/en/authentification/"
+to = "/en/authentification"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/a-propos.html"
-  to = "/index.html"
-  status = 302
+from = "/en/authentification"
+to = "/authentification.en.html"
+status = 200
 
 [[redirects]]
-  from = "/vendre.en"
-  to = "/boutiques.en.html"
-  status = 302
+from = "/authentification.he.html"
+to = "/he/authentification"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/vendre.en.html"
-  to = "/boutiques.en.html"
-  status = 302
+from = "/authentification.he"
+to = "/he/authentification"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/a-propos.en"
-  to = "/index.en.html"
-  status = 302
+from = "/he/authentification/"
+to = "/he/authentification"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/a-propos.en.html"
-  to = "/index.en.html"
-  status = 302
+from = "/he/authentification"
+to = "/authentification.he.html"
+status = 200
 
 [[redirects]]
-  from = "/vendre.he"
-  to = "/boutiques.he.html"
-  status = 302
+from = "/authentification.html"
+to = "/authentification"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/vendre.he.html"
-  to = "/boutiques.he.html"
-  status = 302
+from = "/authentification/"
+to = "/authentification"
+status = 301
+force = true
 
 [[redirects]]
-  from = "/a-propos.he"
-  to = "/index.he.html"
-  status = 302
+from = "/authentification"
+to = "/authentification.html"
+status = 200
 
 [[redirects]]
-  from = "/a-propos.he.html"
-  to = "/index.he.html"
-  status = 302
+from = "/boutiques.en.html"
+to = "/en/boutiques"
+status = 301
+force = true
+
+[[redirects]]
+from = "/boutiques.en"
+to = "/en/boutiques"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/boutiques/"
+to = "/en/boutiques"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/boutiques"
+to = "/boutiques.en.html"
+status = 200
+
+[[redirects]]
+from = "/boutiques.he.html"
+to = "/he/boutiques"
+status = 301
+force = true
+
+[[redirects]]
+from = "/boutiques.he"
+to = "/he/boutiques"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/boutiques/"
+to = "/he/boutiques"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/boutiques"
+to = "/boutiques.he.html"
+status = 200
+
+[[redirects]]
+from = "/boutiques.html"
+to = "/boutiques"
+status = 301
+force = true
+
+[[redirects]]
+from = "/boutiques/"
+to = "/boutiques"
+status = 301
+force = true
+
+[[redirects]]
+from = "/boutiques"
+to = "/boutiques.html"
+status = 200
+
+[[redirects]]
+from = "/faq.en.html"
+to = "/en/faq"
+status = 301
+force = true
+
+[[redirects]]
+from = "/faq.en"
+to = "/en/faq"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/faq/"
+to = "/en/faq"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/faq"
+to = "/faq.en.html"
+status = 200
+
+[[redirects]]
+from = "/faq.he.html"
+to = "/he/faq"
+status = 301
+force = true
+
+[[redirects]]
+from = "/faq.he"
+to = "/he/faq"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/faq/"
+to = "/he/faq"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/faq"
+to = "/faq.he.html"
+status = 200
+
+[[redirects]]
+from = "/faq.html"
+to = "/faq"
+status = 301
+force = true
+
+[[redirects]]
+from = "/faq/"
+to = "/faq"
+status = 301
+force = true
+
+[[redirects]]
+from = "/faq"
+to = "/faq.html"
+status = 200
+
+[[redirects]]
+from = "/index.en.html"
+to = "/en"
+status = 301
+force = true
+
+[[redirects]]
+from = "/index.en"
+to = "/en"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/"
+to = "/en"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en"
+to = "/index.en.html"
+status = 200
+
+[[redirects]]
+from = "/index.he.html"
+to = "/he"
+status = 301
+force = true
+
+[[redirects]]
+from = "/index.he"
+to = "/he"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/"
+to = "/he"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he"
+to = "/index.he.html"
+status = 200
+
+[[redirects]]
+from = "/index.html"
+to = "/fr"
+status = 301
+force = true
+
+[[redirects]]
+from = "/index"
+to = "/fr"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fr/"
+to = "/fr"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fr"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/privacy.en.html"
+to = "/en/privacy"
+status = 301
+force = true
+
+[[redirects]]
+from = "/privacy.en"
+to = "/en/privacy"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/privacy/"
+to = "/en/privacy"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/privacy"
+to = "/privacy.en.html"
+status = 200
+
+[[redirects]]
+from = "/privacy.he.html"
+to = "/he/privacy"
+status = 301
+force = true
+
+[[redirects]]
+from = "/privacy.he"
+to = "/he/privacy"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/privacy/"
+to = "/he/privacy"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/privacy"
+to = "/privacy.he.html"
+status = 200
+
+[[redirects]]
+from = "/privacy.html"
+to = "/privacy"
+status = 301
+force = true
+
+[[redirects]]
+from = "/privacy/"
+to = "/privacy"
+status = 301
+force = true
+
+[[redirects]]
+from = "/privacy"
+to = "/privacy.html"
+status = 200
+
+[[redirects]]
+from = "/returns.en.html"
+to = "/en/returns"
+status = 301
+force = true
+
+[[redirects]]
+from = "/returns.en"
+to = "/en/returns"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/returns/"
+to = "/en/returns"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/returns"
+to = "/returns.en.html"
+status = 200
+
+[[redirects]]
+from = "/returns.he.html"
+to = "/he/returns"
+status = 301
+force = true
+
+[[redirects]]
+from = "/returns.he"
+to = "/he/returns"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/returns/"
+to = "/he/returns"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/returns"
+to = "/returns.he.html"
+status = 200
+
+[[redirects]]
+from = "/returns.html"
+to = "/returns"
+status = 301
+force = true
+
+[[redirects]]
+from = "/returns/"
+to = "/returns"
+status = 301
+force = true
+
+[[redirects]]
+from = "/returns"
+to = "/returns.html"
+status = 200
+
+[[redirects]]
+from = "/shipping.en.html"
+to = "/en/shipping"
+status = 301
+force = true
+
+[[redirects]]
+from = "/shipping.en"
+to = "/en/shipping"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/shipping/"
+to = "/en/shipping"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/shipping"
+to = "/shipping.en.html"
+status = 200
+
+[[redirects]]
+from = "/shipping.he.html"
+to = "/he/shipping"
+status = 301
+force = true
+
+[[redirects]]
+from = "/shipping.he"
+to = "/he/shipping"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/shipping/"
+to = "/he/shipping"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/shipping"
+to = "/shipping.he.html"
+status = 200
+
+[[redirects]]
+from = "/shipping.html"
+to = "/shipping"
+status = 301
+force = true
+
+[[redirects]]
+from = "/shipping/"
+to = "/shipping"
+status = 301
+force = true
+
+[[redirects]]
+from = "/shipping"
+to = "/shipping.html"
+status = 200
+
+[[redirects]]
+from = "/terms.en.html"
+to = "/en/terms"
+status = 301
+force = true
+
+[[redirects]]
+from = "/terms.en"
+to = "/en/terms"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/terms/"
+to = "/en/terms"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/terms"
+to = "/terms.en.html"
+status = 200
+
+[[redirects]]
+from = "/terms.he.html"
+to = "/he/terms"
+status = 301
+force = true
+
+[[redirects]]
+from = "/terms.he"
+to = "/he/terms"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/terms/"
+to = "/he/terms"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/terms"
+to = "/terms.he.html"
+status = 200
+
+[[redirects]]
+from = "/terms.html"
+to = "/terms"
+status = 301
+force = true
+
+[[redirects]]
+from = "/terms/"
+to = "/terms"
+status = 301
+force = true
+
+[[redirects]]
+from = "/terms"
+to = "/terms.html"
+status = 200
+
+[[redirects]]
+from = "/univers.en.html"
+to = "/en/univers"
+status = 301
+force = true
+
+[[redirects]]
+from = "/univers.en"
+to = "/en/univers"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/univers/"
+to = "/en/univers"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/univers"
+to = "/univers.en.html"
+status = 200
+
+[[redirects]]
+from = "/univers.he.html"
+to = "/he/univers"
+status = 301
+force = true
+
+[[redirects]]
+from = "/univers.he"
+to = "/he/univers"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/univers/"
+to = "/he/univers"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/univers"
+to = "/univers.he.html"
+status = 200
+
+[[redirects]]
+from = "/univers.html"
+to = "/univers"
+status = 301
+force = true
+
+[[redirects]]
+from = "/univers/"
+to = "/univers"
+status = 301
+force = true
+
+[[redirects]]
+from = "/univers"
+to = "/univers.html"
+status = 200

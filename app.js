@@ -4,6 +4,7 @@
   const curtain = document.querySelector('.transition-curtain');
   const scrollPositions = new Map();
   const pageCache = new Map();
+  const pageRoutes = new Set(["/application", "/authentification", "/boutiques", "/en", "/en/application", "/en/authentification", "/en/boutiques", "/en/faq", "/en/privacy", "/en/returns", "/en/shipping", "/en/terms", "/en/univers", "/faq", "/fr", "/he", "/he/application", "/he/authentification", "/he/boutiques", "/he/faq", "/he/privacy", "/he/returns", "/he/shipping", "/he/terms", "/he/univers", "/privacy", "/returns", "/shipping", "/terms", "/univers"]);
   const imageCache = new Map();
   let observer, busy = false, currentURL = location.href, data, supportOpener, cleanupTabs = () => {};
 
@@ -252,6 +253,8 @@
       const nextDesign=next.getElementById('switchy-design'),currentDesign=document.getElementById('switchy-design');
       if(nextDesign){if(currentDesign)currentDesign.replaceWith(nextDesign);else document.head.append(nextDesign);}else currentDesign?.remove();
       document.title = next.title;
+      document.querySelectorAll('link[rel="canonical"], link[rel="alternate"][hreflang]').forEach(link => link.remove());
+      next.querySelectorAll('link[rel="canonical"], link[rel="alternate"][hreflang]').forEach(link => document.head.append(link.cloneNode(true)));
       document.querySelector('meta[name="description"]').content = next.querySelector('meta[name="description"]').content;
       document.documentElement.lang = next.documentElement.lang; document.documentElement.dir = next.documentElement.dir;
       if (!back) history.pushState({}, '', url);
@@ -277,7 +280,7 @@
     const href = link.getAttribute('href');
     if (!href || href.startsWith('#')) return null;
     const url = new URL(href, location.href);
-    return url.origin === location.origin && url.pathname.endsWith('.html') ? url : null;
+    return url.origin === location.origin && pageRoutes.has(url.pathname) ? url : null;
   }
   document.addEventListener('click', e => {
     const picker = document.querySelector('.language-picker');

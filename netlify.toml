@@ -723,7 +723,7 @@ from = "/a-propos.he.html"
 to = "/he"
 status = 302
 
-# /a-importer/ is a duplicate upload of the site: every address in it goes to the live page.
+# /a-importer/ was a duplicate upload of the site (files deleted): any old address in it goes to the live page.
 [[redirects]]
 from = "/a-importer"
 to = "/"

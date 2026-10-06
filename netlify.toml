@@ -3,7 +3,7 @@
 # Every page address is a clean path: no .html, no file extension. Each file name that
 # could be typed or was linked before redirects (301) to its clean address.
 # The legal documents are Hebrew only, in every language: /terms (sellers' terms, then
-# buyers' terms) and /privacy. The old /en/…, /he/… and /fr/… legal paths 301 to them.
+# buyers' terms), /privacy and /delete-account. The old /en/…, /he/… and /fr/… legal paths 301 to them.
 # The /item/*, /profile/*, /p/*, /sitemap.xml edge functions are untouched.
 [build]
   publish = "."
@@ -189,6 +189,37 @@ force = true
 [[redirects]]
 from = "/fr/privacy"
 to = "/privacy"
+status = 301
+force = true
+
+# ── account deletion (Google Play Data safety "delete account URL"): Hebrew, no sign-in ──
+[[redirects]]
+from = "/delete-account"
+to = "/delete-account.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/delete-account.html"
+to = "/delete-account"
+status = 301
+force = true
+
+[[redirects]]
+from = "/en/delete-account"
+to = "/delete-account"
+status = 301
+force = true
+
+[[redirects]]
+from = "/he/delete-account"
+to = "/delete-account"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fr/delete-account"
+to = "/delete-account"
 status = 301
 force = true
 

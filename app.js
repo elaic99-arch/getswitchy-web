@@ -50,7 +50,9 @@
     if (restoreFocus) picker.querySelector('summary').focus();
   }
   // ── Contact form (the #contact-support dialog): sends straight to support@getswitchy.com through the
-  //    website-contact function (Supabase). hCaptcha loads only when the dialog is first opened.
+  //    website-contact function (Supabase). hCaptcha loads only when the dialog is first opened. Its challenge
+  //    renders INSIDE the dialog ('challenge-container'): a modal <dialog> sits in the browser's top layer, so a
+  //    challenge appended to <body> (hCaptcha's default) would open underneath it, unclickable.
   const CONTACT_ENDPOINT = 'https://kvmgiutjertspbexjuzn.supabase.co/functions/v1/website-contact';
   let hcaptchaLoading = null;
   function loadHcaptcha() {
@@ -74,7 +76,7 @@
     if (box.dataset.widget === undefined) {
       box.dataset.widget = '';
       loadHcaptcha().then(hc => {
-        if (box.isConnected && box.dataset.widget === '') box.dataset.widget = String(hc.render(box, {sitekey: box.dataset.sitekey, hl: document.documentElement.lang}));
+        if (box.isConnected && box.dataset.widget === '') box.dataset.widget = String(hc.render(box, {sitekey: box.dataset.sitekey, hl: document.documentElement.lang, 'challenge-container': support}));
       }).catch(() => { delete box.dataset.widget; });
     }
   }

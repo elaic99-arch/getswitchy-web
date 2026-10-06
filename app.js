@@ -95,6 +95,8 @@
     const layer = support.querySelector('[data-support-challenge]');
     const resetCaptcha = () => { if (window.hcaptcha && widget() !== null) window.hcaptcha.reset(widget()); layer.hidden = true; };
     support.addEventListener('close', () => { layer.hidden = true; });
+    // A tap on the dimmed area around the challenge dismisses it (hCaptcha does not, inside a custom container).
+    layer.addEventListener('click', e => { if (e.target === layer) resetCaptcha(); });
     message.addEventListener('input', () => { count.textContent = [...message.value].length + '/1000'; });
     form.addEventListener('input', e => e.target.removeAttribute('aria-invalid'));
     form.addEventListener('submit', async e => {

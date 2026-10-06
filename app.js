@@ -52,7 +52,9 @@
   // ── Contact form (the #contact-support dialog): sends straight to support@getswitchy.com through the
   //    website-contact function (Supabase). hCaptcha loads only when the dialog is first opened. Its challenge
   //    renders INSIDE the dialog ('challenge-container'): a modal <dialog> sits in the browser's top layer, so a
-  //    challenge appended to <body> (hCaptcha's default) would open underneath it, unclickable.
+  //    challenge appended to <body> (hCaptcha's default) would open underneath it, unclickable. The container is
+  //    a fixed overlay shown only between hCaptcha's open and close events — in this mode hCaptcha never hides
+  //    its 320x400 frame itself, so left in the flow it would leave a blank block in the dialog.
   const CONTACT_ENDPOINT = 'https://kvmgiutjertspbexjuzn.supabase.co/functions/v1/website-contact';
   let hcaptchaLoading = null;
   function loadHcaptcha() {
@@ -72,11 +74,15 @@
     if (form.hidden) { form.hidden = false; done.hidden = true; }
     form.querySelector('.support-status').textContent = '';
     if (!support.open) support.showModal();
-    const box = support.querySelector('[data-support-captcha]');
+    const box = support.querySelector('[data-support-captcha]'), layer = support.querySelector('[data-support-challenge]');
     if (box.dataset.widget === undefined) {
       box.dataset.widget = '';
+      const show = () => { layer.hidden = false; }, hide = () => { layer.hidden = true; };
       loadHcaptcha().then(hc => {
-        if (box.isConnected && box.dataset.widget === '') box.dataset.widget = String(hc.render(box, {sitekey: box.dataset.sitekey, hl: document.documentElement.lang, 'challenge-container': support}));
+        if (box.isConnected && box.dataset.widget === '') box.dataset.widget = String(hc.render(box, {
+          sitekey: box.dataset.sitekey, hl: document.documentElement.lang, 'challenge-container': layer,
+          'open-callback': show, 'close-callback': hide, callback: hide, 'chalexpired-callback': hide, 'error-callback': hide,
+        }));
       }).catch(() => { delete box.dataset.widget; });
     }
   }
@@ -86,7 +92,9 @@
     const message = form.elements.message, count = form.querySelector('[data-support-count]');
     const box = form.querySelector('[data-support-captcha]');
     const widget = () => (box.dataset.widget ? box.dataset.widget : null);
-    const resetCaptcha = () => { if (window.hcaptcha && widget() !== null) window.hcaptcha.reset(widget()); };
+    const layer = support.querySelector('[data-support-challenge]');
+    const resetCaptcha = () => { if (window.hcaptcha && widget() !== null) window.hcaptcha.reset(widget()); layer.hidden = true; };
+    support.addEventListener('close', () => { layer.hidden = true; });
     message.addEventListener('input', () => { count.textContent = [...message.value].length + '/1000'; });
     form.addEventListener('input', e => e.target.removeAttribute('aria-invalid'));
     form.addEventListener('submit', async e => {
@@ -118,7 +126,7 @@
         const body = await res.json().catch(() => ({}));
         if (res.ok && body.ok) {
           form.reset(); count.textContent = '0/1000'; resetCaptcha();
-          form.hidden = true; done.hidden = false; done.querySelector('p').focus();
+          form.hidden = true; done.hidden = false; support.scrollTop = 0; done.querySelector('p').focus({preventScroll: true});
           return;
         }
         resetCaptcha();

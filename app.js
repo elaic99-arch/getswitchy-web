@@ -4,7 +4,7 @@
   const curtain = document.querySelector('.transition-curtain');
   const scrollPositions = new Map();
   const pageCache = new Map();
-  const pageRoutes = new Set(["/application", "/authentification", "/boutiques", "/en", "/en/application", "/en/authentification", "/en/boutiques", "/en/faq", "/en/privacy", "/en/returns", "/en/shipping", "/en/terms", "/en/univers", "/faq", "/fr", "/he", "/he/application", "/he/authentification", "/he/boutiques", "/he/faq", "/he/privacy", "/he/returns", "/he/shipping", "/he/terms", "/he/univers", "/privacy", "/returns", "/shipping", "/terms", "/univers"]);
+  const pageRoutes = new Set(["/", "/application", "/authentification", "/boutiques", "/faq", "/fr", "/fr/application", "/fr/authentification", "/fr/boutiques", "/fr/faq", "/fr/returns", "/fr/shipping", "/fr/univers", "/he", "/he/application", "/he/authentification", "/he/boutiques", "/he/faq", "/he/returns", "/he/shipping", "/he/univers", "/returns", "/shipping", "/univers"]);
   const imageCache = new Map();
   let observer, busy = false, currentURL = location.href, data, supportOpener, cleanupTabs = () => {};
 

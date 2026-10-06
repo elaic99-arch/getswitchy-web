@@ -49,12 +49,94 @@
     picker.open = false;
     if (restoreFocus) picker.querySelector('summary').focus();
   }
+  // ── Contact form (the #contact-support dialog): sends straight to support@getswitchy.com through the
+  //    website-contact function (Supabase). hCaptcha loads only when the dialog is first opened.
+  const CONTACT_ENDPOINT = 'https://kvmgiutjertspbexjuzn.supabase.co/functions/v1/website-contact';
+  let hcaptchaLoading = null;
+  function loadHcaptcha() {
+    if (window.hcaptcha) return Promise.resolve(window.hcaptcha);
+    if (!hcaptchaLoading) hcaptchaLoading = new Promise((resolve, reject) => {
+      window.__switchyHcaptchaReady = () => resolve(window.hcaptcha);
+      const script = document.createElement('script');
+      script.src = 'https://js.hcaptcha.com/1/api.js?render=explicit&onload=__switchyHcaptchaReady';
+      script.async = true;
+      script.onerror = () => { hcaptchaLoading = null; reject(new Error('hcaptcha')); };
+      document.head.append(script);
+    });
+    return hcaptchaLoading;
+  }
+  function openSupport(support) {
+    const form = support.querySelector('[data-support-form]'), done = support.querySelector('[data-support-done]');
+    if (form.hidden) { form.hidden = false; done.hidden = true; }
+    form.querySelector('.support-status').textContent = '';
+    if (!support.open) support.showModal();
+    const box = support.querySelector('[data-support-captcha]');
+    if (box.dataset.widget === undefined) {
+      box.dataset.widget = '';
+      loadHcaptcha().then(hc => {
+        if (box.isConnected && box.dataset.widget === '') box.dataset.widget = String(hc.render(box, {sitekey: box.dataset.sitekey, hl: document.documentElement.lang}));
+      }).catch(() => { delete box.dataset.widget; });
+    }
+  }
+  function setupSupportForm(support) {
+    const form = support.querySelector('[data-support-form]'), done = support.querySelector('[data-support-done]');
+    const status = form.querySelector('.support-status'), submit = form.querySelector('[type="submit"]');
+    const message = form.elements.message, count = form.querySelector('[data-support-count]');
+    const box = form.querySelector('[data-support-captcha]');
+    const widget = () => (box.dataset.widget ? box.dataset.widget : null);
+    const resetCaptcha = () => { if (window.hcaptcha && widget() !== null) window.hcaptcha.reset(widget()); };
+    message.addEventListener('input', () => { count.textContent = [...message.value].length + '/1000'; });
+    form.addEventListener('input', e => e.target.removeAttribute('aria-invalid'));
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (submit.disabled) return;
+      const d = form.dataset, v = Object.fromEntries(new FormData(form));
+      const bad = [];
+      if (!v.topic) bad.push('topic');
+      if (!String(v.firstName || '').trim()) bad.push('firstName');
+      if (!String(v.lastName || '').trim()) bad.push('lastName');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(v.email || '').trim())) bad.push('email');
+      if ([...String(v.message || '').trim()].length < 10) bad.push('message');
+      form.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
+      if (bad.length) {
+        bad.forEach(name => form.elements[name].setAttribute('aria-invalid', 'true'));
+        status.textContent = bad.length === 1 && bad[0] === 'email' ? d.errEmail : bad.length === 1 && bad[0] === 'message' ? d.errMessage : d.errRequired;
+        form.elements[bad[0]].focus();
+        return;
+      }
+      const token = window.hcaptcha && widget() !== null ? window.hcaptcha.getResponse(widget()) : '';
+      if (!token) { status.textContent = d.errCaptcha; return; }
+      submit.disabled = true; status.textContent = d.sending;
+      try {
+        const res = await fetch(CONTACT_ENDPOINT, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({...v, lang: document.documentElement.lang, page: location.pathname, captchaToken: token}),
+        });
+        const body = await res.json().catch(() => ({}));
+        if (res.ok && body.ok) {
+          form.reset(); count.textContent = '0/1000'; resetCaptcha();
+          form.hidden = true; done.hidden = false; done.querySelector('p').focus();
+          return;
+        }
+        resetCaptcha();
+        if (body.error === 'invalid' && Array.isArray(body.fields)) {
+          body.fields.forEach(name => form.elements[name]?.setAttribute('aria-invalid', 'true'));
+          status.textContent = d.errRequired;
+        } else status.textContent = res.status === 429 ? d.errRate : body.error === 'captcha' ? d.errCaptcha : d.errSend;
+      } catch {
+        resetCaptcha(); status.textContent = d.errSend;
+      } finally {
+        submit.disabled = false;
+      }
+    });
+  }
   function setup() {
     cleanupTabs();
     data = JSON.parse(document.getElementById('page-data').textContent);
     supportOpener = null;
     const support = document.getElementById('contact-support');
-    support.querySelector('[data-support-close]').addEventListener('click', () => support.close());
+    support.querySelectorAll('[data-support-close]').forEach(b => b.addEventListener('click', () => support.close()));
     support.addEventListener('close', () => {
       if (supportOpener?.isConnected) supportOpener.focus({preventScroll: true});
       supportOpener = null;
@@ -64,18 +146,7 @@
       const box = support.getBoundingClientRect();
       if (e.clientX < box.left || e.clientX > box.right || e.clientY < box.top || e.clientY > box.bottom) support.close();
     });
-    support.querySelector('[data-support-copy]').addEventListener('click', async e => {
-      const button = e.currentTarget, status = support.querySelector('.support-status');
-      try {
-        await navigator.clipboard.writeText('support@getswitchy.com');
-        status.textContent = button.dataset.copied;
-      } catch {
-        const selection = window.getSelection(), range = document.createRange();
-        range.selectNodeContents(support.querySelector('.support-address'));
-        selection.removeAllRanges(); selection.addRange(range);
-        status.textContent = button.dataset.copyFallback;
-      }
-    });
+    setupSupportForm(support);
     document.body.classList.remove('menu-open');
     const menu = document.querySelector('.menu-button');
     const mobile = document.getElementById('mobile-nav');
@@ -287,12 +358,10 @@
     if (picker?.open && !picker.contains(e.target)) closeLanguage();
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     const clickedLink = e.target.closest('a');
-    if (['#contact-support', 'mailto:support@getswitchy.com'].includes(clickedLink?.getAttribute('href'))) {
+    if (['#contact-support', 'mailto:support@getswitchy.com'].includes(clickedLink?.getAttribute('href')) && !clickedLink.closest('#contact-support')) {
       e.preventDefault();
-      const support = document.getElementById('contact-support');
       supportOpener = clickedLink;
-      support.querySelector('.support-status').textContent = '';
-      support.showModal();
+      openSupport(document.getElementById('contact-support'));
       return;
     }
     const url = internalURL(clickedLink);
@@ -321,7 +390,7 @@
     if (reducedMotion.matches) document.querySelectorAll('.waiting').forEach(el => el.classList.remove('waiting'));
   });
   setup();
-  if (location.hash === '#contact-support') document.getElementById('contact-support')?.showModal();
+  if (location.hash === '#contact-support') openSupport(document.getElementById('contact-support'));
   // Eagerly warm all images while the page remains visible and usable.
   preparePage(document);
 })();

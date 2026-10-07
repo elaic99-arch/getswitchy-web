@@ -639,7 +639,7 @@ force = true
 
 [[redirects]]
 from = "/assets/app-shop.webp"
-to = "/assets/app-shop-profile-v22.webp"
+to = "/assets/app-shop-profile-v23.webp"
 status = 301
 force = true
 

@@ -12,11 +12,19 @@ const PAGE_CSP = "default-src https: data: 'unsafe-inline'; object-src 'none'; b
 
 export default async (request: Request) => {
   const url = new URL(request.url);
-  const supabaseUrl = `https://kvmgiutjertspbexjuzn.supabase.co/functions/v1/seo-profile-page${url.pathname}`;
+  // The page speaks the link's ?lang= (the app adds the sharer's language) or, without one, the
+  // browser's language; only those two travel on, so the page is English exactly as before otherwise.
+  const lang = url.searchParams.get("lang");
+  const supabaseUrl = `https://kvmgiutjertspbexjuzn.supabase.co/functions/v1/seo-profile-page${url.pathname}${
+    lang ? `?lang=${encodeURIComponent(lang)}` : ""
+  }`;
+  const requestHeaders: Record<string, string> = { "user-agent": request.headers.get("user-agent") ?? "Netlify-Edge" };
+  const acceptLanguage = request.headers.get("accept-language");
+  if (acceptLanguage) requestHeaders["accept-language"] = acceptLanguage;
 
   const upstream = await fetch(supabaseUrl, {
     method: request.method,
-    headers: { "user-agent": request.headers.get("user-agent") ?? "Netlify-Edge" },
+    headers: requestHeaders,
   });
 
   const body = await upstream.arrayBuffer();

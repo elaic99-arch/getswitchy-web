@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://getswitchy.com/sitemap.xml
+Sitemap: https://getswitchy.com/sitemap-pages.xml
